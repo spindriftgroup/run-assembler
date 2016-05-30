@@ -2,6 +2,11 @@ RunAssembler Gradle Plugin
 ==========================
 Provides gradle wrapper functionality for the Oracle Commerce (ATG) runAssembler utility to assemble EARs
 
+Note
+====
+This plugin is under development and is not yet operational
+
+
 Environmental Requirements
 ==========================
 
