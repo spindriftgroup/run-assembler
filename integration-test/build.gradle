@@ -1,0 +1,102 @@
+buildscript {
+    repositories {
+        mavenLocal()
+    }
+    dependencies {
+        classpath 'com.spindrift.gradle:run-assembler:0.1.0-SNAPSHOT'
+    }
+}
+
+apply plugin: 'com.spindrift.run-assembler'
+
+runAssembler {
+    assembly {
+        outputFileName 'ATGProduction.ear'
+        modules 'DAS', 'DPS', 'DSS'
+        layers 'storefront-local', 'storefront-test', 'storefront-uat', 'storefront-prod'
+        options {
+            //booleans
+            pack true
+            standalone true
+            overwrite true
+            collapseClassPath true
+            jarDirs true
+            verbose true
+            classesOnly true
+            liveConfig true
+            distributable true
+            excludeAccResources true
+            noFix true
+            runInPlace true
+            tomcat true
+            tomcatUseJotm true
+            tomcatUseAtomikos true
+            jboss true
+        }
+    }
+    assembly {
+        outputFileName 'ATGPublishing.ear'
+        modules 'DAS.Versioned', 'DPS.Versioned', 'DSS.Versioned'
+        layers 'bcc-local', 'bcc-test', 'bcc-uat', 'bcc-prod'
+        options {
+            //booleans
+            pack true
+            standalone true
+            overwrite true
+            collapseClassPath true
+            jarDirs true
+            verbose true
+            classesOnly true
+            liveConfig true
+            distributable true
+            excludeAccResources true
+            noFix true
+            runInPlace true
+            tomcat true
+            tomcatUseJotm true
+            tomcatUseAtomikos true
+            jboss true
+        }
+    }
+
+    assembly {
+        outputFileName 'ATGAgent.ear'
+        modules 'DCS-CSR'
+        layers 'agent-local', 'agent-test', 'agent-uat', 'agent-prod'
+
+    }
+
+    //Invalid assembly configuration
+//    assembly {
+//        modules 'DCS'
+//    }
+}
+
+
+//-pack
+//-standalone
+//-overwrite
+//-collapse-class-path
+//-collapse-exclude-dirs
+//-collapse-exclude-files
+//-jardirs
+//-verbose
+//-classesonly
+//-displayname <name>
+//-server <servername>
+//-liveconfig
+//-distributable
+//-add-ear-file <EAR file name>
+//-context-roots-file <properties file>
+//-dynamo-env-properties <properties file>
+//-exclude-acc-resources
+//-nofix
+//-prependJars <jar1,jar2,...>
+//-run-in-place
+//-layer <layer1 layer2 ...>
+//-tomcat
+//-tomcat-additional-resources-file <fileName>
+//-tomcat-initial-resources-file <fileName>
+//-tomcat-use-jotm
+//-tomcat-use-atomikos
+//-jboss

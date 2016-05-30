@@ -1,0 +1,12 @@
+apply plugin: 'maven'
+
+//Maven local .m2 cache installation
+configure(install.repositories.mavenInstaller) {
+    pom.project {
+        groupId "${rootProject.group}"
+        artifactId "${archivesBaseName}"
+        version "${rootProject.version}"
+    }
+}
+
+install.dependsOn build

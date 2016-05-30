@@ -1,0 +1,60 @@
+apply plugin: 'groovy'
+apply plugin: 'idea'
+
+repositories {
+    jcenter()
+//    mavenLocal()
+//    mavenCentral()
+}
+
+ext {
+    spockGroovyVersion = groovy.lang.GroovySystem.version.replaceAll(/\.\d+$/,'')
+}
+
+dependencies {
+    compile (
+            localGroovy(),
+            gradleApi(),
+    )
+    testCompile("org.spockframework:spock-core:1.0-${spockGroovyVersion}") {
+        exclude module : 'groovy-all'
+    }
+}
+
+import org.gradle.internal.jvm.Jvm
+import org.gradle.util.GradleVersion
+
+//Set the default build and version properties
+group 'com.spindrift.gradle'
+
+project.ext {
+    timestamp = new Date()
+    buildUser=System.getProperty('user.name')
+    buildNumber="(development build by $buildUser)"
+}
+if (!hasProperty('release') || (hasProperty('release') && release!='true')) {
+    project.version+='-SNAPSHOT'
+}
+
+//Set java compatibilities
+targetCompatibility = sourceCompatibility = "1.6"
+project.tasks.withType(GroovyCompile) { task ->
+    task.sourceCompatibility = project.sourceCompatibility
+    task.targetCompatibility = project.targetCompatibility
+}
+
+//Apply additional functionality
+apply from: 'gradle/maven.gradle'
+
+//Set the default task when none supplied:
+defaultTasks 'install'
+
+// Add the wrapper task to enable auto-install of the configured version via ./gradlew
+task wrapper(type: Wrapper) {
+    gradleVersion = "2.0"
+}
+
+project.logger.quiet "Plugin ${project.name} version: ${project.version}"
+project.logger.quiet "BuildNumber: ${buildNumber}"
+project.logger.quiet "Gradle Version: ${GradleVersion.current().getVersion()}"
+project.logger.quiet "Java Version: ${Jvm.current()}"
