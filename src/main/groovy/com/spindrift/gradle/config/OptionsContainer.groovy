@@ -62,7 +62,15 @@ class OptionsContainer {
         this.classesOnly = classesOnly
     }
 //-displayname <name>
+    private String displayName
+    void displayName(String displayName) {
+        this.displayName = displayName
+    }
 //-server <servername>
+    private String serverName
+    void serverName(String serverName) {
+        this.serverName = serverName
+    }
 //-liveconfig
     private boolean liveConfig = false
     void liveConfig(boolean liveConfig) {
@@ -124,6 +132,8 @@ collapseClassPath:${collapseClassPath},
 jarDirs:${jarDirs},
 verbose:${verbose},
 classesOnly:${classesOnly},
+displayName:${displayName},
+server:${serverName},
 liveConfig:${liveConfig},
 distributable:${distributable}
 excludeAccResources:${excludeAccResources}
