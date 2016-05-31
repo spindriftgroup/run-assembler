@@ -24,6 +24,14 @@ import org.gradle.util.CollectionUtils
  */
 class AssemblyParametersContainer {
 
+    /**
+     * name of the assembly for individual actioning
+     */
+    private String name
+    void name(String name) {
+        this.name = name
+    }
+
     //@Input
     /**
      * output-file-name input property

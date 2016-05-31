@@ -36,7 +36,12 @@ class RunAssemblerProperties extends DefaultTask {
 
     @TaskAction
     public void exec() {
-        AssemblyParametersLogger.logPropertyValues(project)
+        if (project.hasProperty('app') && project.app) {
+            AssemblyParametersLogger.logPropertyValues(project, project.runAssembler.assembly.find { it.name == project.app})
+        }
+        else {
+            AssemblyParametersLogger.logPropertyValues(project)
+        }
     }
 
 }

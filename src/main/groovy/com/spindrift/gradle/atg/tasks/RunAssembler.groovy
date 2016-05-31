@@ -21,7 +21,6 @@ import com.spindrift.gradle.config.AssemblyParametersLogger
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
 
-
 /**
  * Wrapper task for executing runAssembler utility.
  * It iterates over a list of script configurations which define the parameters for each assembly.
@@ -45,6 +44,16 @@ class RunAssembler extends DefaultTask {
         if (project.hasProperty('showProperties')) {
             AssemblyParametersLogger.logPropertyValues(project)
         }
+
+        //process
+        if (project.hasProperty('app') && project.app) {
+            println "processing ${project.runAssembler.assembly.find { it.name == project.app}}"
+        }
+        else {
+            println "processing ${project.runAssembler.assembly.join('\n')}"
+        }
+
+
 
     }
 

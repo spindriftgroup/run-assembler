@@ -11,6 +11,7 @@ apply plugin: 'com.spindrift.run-assembler'
 
 runAssembler {
     assembly {
+        name 'live'
         outputFileName 'ATGProduction.ear'
         modules 'DAS', 'DPS', 'DSS'
         layers 'storefront-local', 'storefront-test', 'storefront-uat', 'storefront-prod'
@@ -35,6 +36,7 @@ runAssembler {
         }
     }
     assembly {
+        name 'ca'
         outputFileName 'ATGPublishing.ear'
         modules 'DAS.Versioned', 'DPS.Versioned', 'DSS.Versioned'
         layers 'bcc-local', 'bcc-test', 'bcc-uat', 'bcc-prod'
@@ -60,6 +62,7 @@ runAssembler {
     }
 
     assembly {
+        name 'agent'
         outputFileName 'ATGAgent.ear'
         modules 'DCS-CSR'
         layers 'agent-local', 'agent-test', 'agent-uat', 'agent-prod'
