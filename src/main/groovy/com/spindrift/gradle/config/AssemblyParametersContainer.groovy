@@ -85,7 +85,8 @@ class AssemblyParametersContainer {
 
     @Override
     public String toString() {
-        """outputFileName:${this.outputFileName},
+        """name:${this.name},
+outputFileName:${this.outputFileName},
 modules:${this.modules.join(',')},
 layers:${this.layers.join(',')},
 options:${this.options}"""

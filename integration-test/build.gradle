@@ -36,6 +36,18 @@ runAssembler {
             //strings
             displayName 'storefront'
             serverName 'Storefront'
+            tomcatAdditionalResourcesFile 'additionalResources.xml'
+            tomcatInitialResourcesFile 'initialResources.xml'
+            contextRootsFile 'contexts.properties'
+            dynamoEnvProperties 'myEnv.properties'
+            //list
+            prependJars 'p123.jar','p456.jar'
+            addEarFile 'one.ear','two.ear'
+            addEarFile 'three.ear'
+            collapseExcludeDirs 'dir1','dir2'
+            collapseExcludeDirs 'dir3'
+            collapseExcludeFiles 'file1'
+            collapseExcludeFiles 'file2','file3'
         }
     }
     assembly {
@@ -64,6 +76,8 @@ runAssembler {
             //strings
             displayName 'bcc'
             serverName 'Pub'
+            //list
+            prependJars 'p123.jar','p456.jar','p789.jar'
         }
     }
 
