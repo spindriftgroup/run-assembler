@@ -20,7 +20,7 @@ runAssembler {
             pack true
             standalone true
             overwrite true
-            collapseClassPath true
+//            collapseClassPath true
             jarDirs true
             verbose true
             classesOnly true
@@ -68,7 +68,7 @@ runAssembler {
             distributable true
             excludeAccResources true
             noFix true
-            runInPlace true
+//            runInPlace true
             tomcat true
             tomcatUseJotm true
             tomcatUseAtomikos true
@@ -93,9 +93,27 @@ runAssembler {
         }
     }
 
-    //Invalid assembly configuration
+    //The following are invalid assembly combinations and require invidual un-commenting:
+
+    //Invalid assembly with no name or outputFileName
 //    assembly {
 //        modules 'DCS'
+//    }
+
+    //Invalid assembly with no modules
+//    assembly {
+//        name 'invalid1'
+//        outputFileName 'ATGInvalid1.ear'
+//    }
+    //Invalid combinations
+//    assembly {
+//        name 'invalid2'
+//        outputFileName 'ATGInvalid2.ear'
+//        modules 'DCS'
+//        options {
+//            collapseClassPath true
+//            runInPlace true
+//        }
 //    }
 }
 

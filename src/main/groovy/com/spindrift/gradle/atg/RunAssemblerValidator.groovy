@@ -19,6 +19,7 @@ import org.gradle.api.Project
 import org.gradle.api.GradleException
 
 /**
+ * Simple validation of runAssembler configuration to match usage notes.
  * Created by hallatech on 29/05/2016.
  */
 class RunAssemblerValidator {
@@ -26,8 +27,17 @@ class RunAssemblerValidator {
     static validate(Project project) {
 
         project.runAssembler.assembly.each { assembly ->
+            //outputFileName must exist
             if (!assembly.outputFileName) {
                 throw new GradleException("outputFileName is undefined for the current assembly configuration: \n${assembly}")
+            }
+            //at least one module option must exist
+            if (!assembly.modules) {
+                throw new GradleException("At least one module is required for the current assembly configuration: \n${assembly}")
+            }
+            //invalid combination of collapse-class-path and run-in-place
+            if (assembly.options.collapseClassPath && assembly.options.runInPlace) {
+                throw new GradleException("collapseClassPath and runInPlace cannot be used together for the current assembly configuration: \n${assembly}")
             }
         }
 
