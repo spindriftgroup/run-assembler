@@ -80,7 +80,7 @@ runAssembler {
 Assembly properties:
 
 Property | Type | Default Value | Matched runAssembler parameter
--------- | ------------- | ------------------------------
+-------- | ---- | ------------- | ------------------------------
 name* | String | none <required> | Not applicable. For requesting gradle CLI using -Papp=name
 outputFileName* | String | none <required> | -output-file-name
 modules* | List<String> | none <required> | -m
@@ -103,7 +103,7 @@ runAssembler {
 Options properties:
 
 Property | Type | Default Value | Matched runAssembler parameter
--------- | ------------- | ------------------------------
+-------- | ---- | ------------- | ------------------------------
 pack | boolean | false | -pack
 standalone | boolean | false | -standalone
 overwrite | boolean | false | -overwrite
