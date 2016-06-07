@@ -7,6 +7,8 @@ Notes and Licensing
 This plugin does not install Oracle Commerce (ATG) but assumes it is already installed and does not exclude 
 the user from any Oracle licensing obligations.
 This plugin is operational for *nix environments, is enabled for Windows but has not been tested on Windows.
+**Due to the exhaustive list of options not all variations have been tested**
+
 
 Environmental Requirements
 ==========================
@@ -38,7 +40,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.spindrift.gradle:run-assembler:0.1.0-SNAPSHOT'
+        classpath 'com.spindrift.gradle:run-assembler:1.0.0'
     }
 }
 
