@@ -17,6 +17,7 @@ package com.spindrift.gradle.atg.tasks
 
 import com.spindrift.gradle.atg.RunAssemblerValidator
 import com.spindrift.gradle.atg.tasks.helpers.RunAssemblerCommandLineBuilder
+import com.spindrift.gradle.atg.tasks.helpers.RunAssemblerExecutor
 import com.spindrift.gradle.config.AssemblyParametersLogger
 
 import org.gradle.api.DefaultTask
@@ -52,12 +53,16 @@ class RunAssembler extends DefaultTask {
                 throw new GradleException("Invalid assembly name for parameter app=${project.app}")
             }
             def args = RunAssemblerCommandLineBuilder.build(project, project.app)
-            println "Executing runAssembler for assembly configuration ${project.app} \n${args}"
+            project.logger.quiet "Executing runAssembler for assembly configuration ${project.app}"
+            project.logger.info "with arguments ${args}"
+            RunAssemblerExecutor.exec(project, args)
         }
         else {
             project.runAssembler.assembly.each { config ->
                 def args = RunAssemblerCommandLineBuilder.build(project, config.name)
-                println "Executing runAssembler for assembly configuration ${config.name} \n${args}"
+                project.logger.quiet "Executing runAssembler for assembly configuration ${config.name}"
+                project.logger.info "with arguments ${args}"
+                RunAssemblerExecutor.exec(project, args)
             }
 
         }

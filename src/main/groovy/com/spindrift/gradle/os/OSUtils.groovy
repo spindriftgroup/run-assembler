@@ -15,6 +15,8 @@
  */
 package com.spindrift.gradle.os
 
+import org.gradle.api.GradleException
+
 /**
  * Created by hallatech on 29/05/2016.
  */
@@ -39,5 +41,25 @@ class OSUtils {
      */
     static boolean isWindows() {
         return (getOSType().equals("windows")) ? true : false
+    }
+
+    /**
+     * Gets an environment variable
+     * @param name the name of the environment variable
+     * @param failIfNotExists throw exception if variable not found
+     * @return the variable
+     */
+    static String getEnvVariable(String name, boolean failIfNotExists) {
+        def envVar = System.getenv(name)
+        if (envVar == null) {
+            if (failIfNotExists) {
+                throw new GradleException("Requested environment variable ${name} not found. This is requirement to continue, please set and try again.")
+            }
+            else {
+                //TODO - find a static logger to use
+                println "[WARN] Requested environment variable ${name} not found. Unexpected results may occur."
+            }
+        }
+        return envVar
     }
 }

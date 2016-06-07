@@ -10,86 +10,84 @@ buildscript {
 apply plugin: 'com.spindrift.run-assembler'
 
 runAssembler {
+    //Target output EAR paths
+    buildLocal true //default
+    outputDir 'atg' //default
+    createOutputDir true //default
+
+    //Remote target
+//    outputDir '/some/target/atgEars/'
+//    buildLocal false
+//    createOutputDir false //fail assert
+
+    //Assembly configurations:
+    //Example all options (Note: not all options are valid combinations)
+//    assembly {
+//        name 'live'
+//        outputFileName 'ATGProduction.ear'
+//        modules 'DAS', 'DPS', 'DSS'
+//        layers 'storefront-local', 'storefront-test', 'storefront-uat', 'storefront-prod'
+//        options {
+//            //booleans
+//            pack true
+//            standalone true
+//            overwrite true
+//            collapseClassPath true
+//            jarDirs true
+//            verbose true
+//            classesOnly true
+//            liveConfig true
+//            distributable true
+//            excludeAccResources true
+//            noFix true
+//            runInPlace true
+//            tomcat true
+//            tomcatUseJotm true
+//            tomcatUseAtomikos true
+//            jboss true
+//            //strings
+//            displayName 'storefront'
+//            server 'Storefront'
+//            tomcatAdditionalResourcesFile 'additionalResources.xml'
+//            tomcatInitialResourcesFile 'initialResources.xml'
+//            contextRootsFile 'contexts.properties'
+//            dynamoEnvProperties 'myEnv.properties'
+//            //list
+//            prependJars 'p123.jar','p456.jar'
+//            addEarFile 'one.ear','two.ear'
+//            addEarFile 'three.ear'
+//            collapseExcludeDirs 'dir1','dir2'
+//            collapseExcludeDirs 'dir3'
+//            collapseExcludeFiles 'file1'
+//            collapseExcludeFiles 'file2','file3'
+//        }
+//    }
     assembly {
         name 'live'
         outputFileName 'ATGProduction.ear'
-        modules 'DAS', 'DPS', 'DSS'
-        layers 'storefront-local', 'storefront-test', 'storefront-uat', 'storefront-prod'
+        modules 'DCS'
         options {
-            //booleans
-            pack true
-            standalone true
-            overwrite true
-//            collapseClassPath true
-            jarDirs true
             verbose true
-            classesOnly true
-            liveConfig true
-            distributable true
-            excludeAccResources true
-            noFix true
             runInPlace true
-            tomcat true
-            tomcatUseJotm true
-            tomcatUseAtomikos true
             jboss true
-            //strings
-            displayName 'storefront'
-            serverName 'Storefront'
-            tomcatAdditionalResourcesFile 'additionalResources.xml'
-            tomcatInitialResourcesFile 'initialResources.xml'
-            contextRootsFile 'contexts.properties'
-            dynamoEnvProperties 'myEnv.properties'
-            //list
-            prependJars 'p123.jar','p456.jar'
-            addEarFile 'one.ear','two.ear'
-            addEarFile 'three.ear'
-            collapseExcludeDirs 'dir1','dir2'
-            collapseExcludeDirs 'dir3'
-            collapseExcludeFiles 'file1'
-            collapseExcludeFiles 'file2','file3'
         }
     }
     assembly {
         name 'ca'
         outputFileName 'ATGPublishing.ear'
-        modules 'DAS.Versioned', 'DPS.Versioned', 'DSS.Versioned'
-        layers 'bcc-local', 'bcc-test', 'bcc-uat', 'bcc-prod'
+        modules 'DCS.Versioned'
         options {
-            //booleans
             pack true
             standalone true
-            overwrite true
-            collapseClassPath true
-            jarDirs true
-            verbose true
-            classesOnly true
-            liveConfig true
-            distributable true
-            excludeAccResources true
-            noFix true
-//            runInPlace true
-            tomcat true
-            tomcatUseJotm true
-            tomcatUseAtomikos true
-            jboss true
-            //strings
-            displayName 'bcc'
-            serverName 'Pub'
-            //list
-            prependJars 'p123.jar','p456.jar','p789.jar'
         }
     }
-
     assembly {
         name 'agent'
         outputFileName 'ATGAgent.ear'
         modules 'DCS-CSR'
-        layers 'agent-local', 'agent-test', 'agent-uat', 'agent-prod'
         options {
-            //strings
             displayName 'agent'
-            serverName 'Service'
+            server 'Service'
         }
     }
 
@@ -116,32 +114,3 @@ runAssembler {
 //        }
 //    }
 }
-
-
-//-pack
-//-standalone
-//-overwrite
-//-collapse-class-path
-//-collapse-exclude-dirs
-//-collapse-exclude-files
-//-jardirs
-//-verbose
-//-classesonly
-//-displayname <name>
-//-server <servername>
-//-liveconfig
-//-distributable
-//-add-ear-file <EAR file name>
-//-context-roots-file <properties file>
-//-dynamo-env-properties <properties file>
-//-exclude-acc-resources
-//-nofix
-//-prependJars <jar1,jar2,...>
-//-run-in-place
-//-layer <layer1 layer2 ...>
-//-tomcat
-//-tomcat-additional-resources-file <fileName>
-//-tomcat-initial-resources-file <fileName>
-//-tomcat-use-jotm
-//-tomcat-use-atomikos
-//-jboss

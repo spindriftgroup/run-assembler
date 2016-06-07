@@ -17,6 +17,7 @@ package com.spindrift.gradle.atg.tasks.helpers
 
 import com.spindrift.gradle.config.AssemblyParametersContainer
 import com.spindrift.gradle.config.OptionsContainer
+import com.spindrift.gradle.os.OSUtils
 import org.gradle.api.Project
 
 /**
@@ -97,9 +98,9 @@ class RunAssemblerCommandLineBuilder {
             arguments << DISPLAY_NAME
             arguments << options.displayName
         }
-        if (options.serverName()) {
+        if (options.server()) {
             arguments << SERVER
-            arguments << options.serverName
+            arguments << options.server
         }
         if (options.liveConfig) {
             arguments << LIVE_CONFIG
@@ -158,7 +159,21 @@ class RunAssemblerCommandLineBuilder {
         }
 
         //Add output file name (required)
-        arguments << assembly.outputFileName
+        def targetDir = project.runAssembler.outputDir
+
+        File targetPath = (project.runAssembler.buildLocal) ?
+                project.file("${project.buildDir}/${targetDir}") :
+                project.file(targetDir)
+        if (!targetPath.exists() && project.runAssembler.createOutputDir) {
+            targetPath.mkdirs()
+        }
+        assert targetPath.exists()
+
+        if (OSUtils.isWindows()) {
+            arguments << "${trimPath(targetPath.toString())}\\$assembly.outputFileName}"
+        } else {
+            arguments << "${trimPath(targetPath.toString())}/${assembly.outputFileName}"
+        }
 
         //Add layers (optional
         if (assembly.layers) {
@@ -176,4 +191,14 @@ class RunAssemblerCommandLineBuilder {
 
         return arguments
     }
+
+    private static String trimPath(String pathName) {
+        if (pathName.endsWith('/') || pathName.endsWith('\\')) {
+            pathName[0..-2]
+        }
+        else {
+            pathName
+        }
+    }
+
 }

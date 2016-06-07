@@ -91,9 +91,9 @@ class OptionsContainer {
         this.displayName = displayName
     }
 //-server <servername>
-    private String serverName
-    void serverName(String serverName) {
-        this.serverName = serverName
+    private String server
+    void server(String server) {
+        this.server = server
     }
 //-liveconfig
     private boolean liveConfig = false
@@ -197,7 +197,7 @@ jarDirs:${jarDirs},
 verbose:${verbose},
 classesOnly:${classesOnly},
 displayName:${displayName},
-server:${serverName},
+server:${server},
 liveConfig:${liveConfig},
 distributable:${distributable},
 addEarFile:${addEarFile},

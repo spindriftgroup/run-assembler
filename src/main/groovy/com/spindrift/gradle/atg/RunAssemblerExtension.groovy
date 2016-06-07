@@ -45,4 +45,27 @@ class RunAssemblerExtension {
         assembly.addAll(newAssembly)
     }
 
+    /**
+     * Target output directory
+     */
+    private String outputDir = 'atg'
+    void outputDir(String outputDir) {
+        this.outputDir = outputDir
+    }
+
+    /**
+     * Build target EAR in local build dir
+     */
+    private boolean buildLocal = true
+    void buildLocal(boolean buildLocal) {
+        this.buildLocal = buildLocal
+    }
+
+    /**
+     * Create output directory if it does not exist
+     */
+    private boolean createOutputDir = true
+    void createOutputDir(boolean createOutputDir) {
+        this.createOutputDir = createOutputDir
+    }
 }
