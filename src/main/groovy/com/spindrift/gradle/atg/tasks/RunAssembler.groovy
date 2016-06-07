@@ -16,11 +16,12 @@
 package com.spindrift.gradle.atg.tasks
 
 import com.spindrift.gradle.atg.RunAssemblerValidator
+import com.spindrift.gradle.atg.tasks.helpers.RunAssemblerCommandLineBuilder
 import com.spindrift.gradle.config.AssemblyParametersLogger
 
 import org.gradle.api.DefaultTask
+import org.gradle.api.GradleException
 import org.gradle.api.tasks.TaskAction
-
 /**
  * Wrapper task for executing runAssembler utility.
  * It iterates over a list of script configurations which define the parameters for each assembly.
@@ -47,14 +48,19 @@ class RunAssembler extends DefaultTask {
 
         //process
         if (project.hasProperty('app') && project.app) {
-            println "processing ${project.runAssembler.assembly.find { it.name == project.app}}"
+            if (!RunAssemblerValidator.isValidAssemblyName(project, project.app)) {
+                throw new GradleException("Invalid assembly name for parameter app=${project.app}")
+            }
+            def args = RunAssemblerCommandLineBuilder.build(project, project.app)
+            println "Executing runAssembler for assembly configuration ${project.app} \n${args}"
         }
         else {
-            println "processing ${project.runAssembler.assembly.join('\n')}"
+            project.runAssembler.assembly.each { config ->
+                def args = RunAssemblerCommandLineBuilder.build(project, config.name)
+                println "Executing runAssembler for assembly configuration ${config.name} \n${args}"
+            }
+
         }
-
-
-
     }
 
 }

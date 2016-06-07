@@ -24,6 +24,11 @@ import org.gradle.api.GradleException
  */
 class RunAssemblerValidator {
 
+    /**
+     * Validates combinations of options according to runAssembler rules
+     * @param project
+     * @return
+     */
     static validate(Project project) {
 
         project.runAssembler.assembly.each { assembly ->
@@ -40,6 +45,15 @@ class RunAssemblerValidator {
                 throw new GradleException("collapseClassPath and runInPlace cannot be used together for the current assembly configuration: \n${assembly}")
             }
         }
+    }
 
+    /**
+     * Validates if an assembly configuration with a given name exists
+     * @param project
+     * @param name
+     * @return true if a configuration exists with the name
+     */
+    static isValidAssemblyName(Project project, String name) {
+        (project.runAssembler.assembly.find { it.name == name}) ? true : false
     }
 }

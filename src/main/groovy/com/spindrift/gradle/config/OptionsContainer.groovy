@@ -21,6 +21,8 @@ package com.spindrift.gradle.config
  */
 import groovy.transform.AutoClone
 
+import org.gradle.util.CollectionUtils
+
 @AutoClone
 class OptionsContainer {
 
