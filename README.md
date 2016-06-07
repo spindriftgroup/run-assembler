@@ -36,11 +36,11 @@ To use the plugin, include it in your build script:
 
 ```
 buildscript {
-    repositories {
-        jcenter()
+    maven {
+      url "https://plugins.gradle.org/m2/"
     }
     dependencies {
-        classpath 'com.spindrift.gradle:run-assembler:1.0.0'
+        classpath 'gradle.plugin.com.spindrift.gradle:run-assembler:1.0.1'
     }
 }
 
@@ -49,7 +49,7 @@ apply plugin: 'com.spindrift.run-assembler'
 
 Custom Task Types
 =================
-RunAssembler - Executes the runAssembler utilitity
+RunAssembler - Executes the runAssembler utility
 RunAssemblerProperties - Prints the currently configured assembly parameters
 
 Extension Properties
@@ -195,4 +195,11 @@ Build Notes
 ===========
 The default task is build plus a local maven install so that the integration test can immediately be executed.
 The integration tests are executed separately by switching to the integration-test directory and running the relevant 
-execution command as above after configuration the build.gradle with examples. 
+execution command as above after configuration the build.gradle with examples.
+ 
+To publish to the gradle plugin portal:
+1. Ensure versions are correct
+2. Ensure README notes versions match publishing versions
+3. Ensure integration test versions matches publishing versions
+`gradle clean build publishPlugins -Prelease=true`
+If you don't add -Prelease=true a SNAPSHOT version will be released

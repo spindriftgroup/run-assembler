@@ -1,10 +1,20 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.gradle.publish:plugin-publish-plugin:0.9.4"
+    }
+}
+
 apply plugin: 'groovy'
 apply plugin: 'idea'
+apply plugin: "com.gradle.plugin-publish"
 
 repositories {
     jcenter()
-//    mavenLocal()
-//    mavenCentral()
 }
 
 ext {
@@ -52,6 +62,20 @@ defaultTasks 'install'
 // Add the wrapper task to enable auto-install of the configured version via ./gradlew
 task wrapper(type: Wrapper) {
     gradleVersion = "2.0"
+}
+
+pluginBundle {
+    website = 'http://spindriftgroup.com'
+    vcsUrl = 'https://github.com/spindriftgroup/run-assembler'
+    description = 'Spindrift Oracle Commerce Gradle RunAssembler utility wrapper plugin'
+
+    plugins {
+        runAssemblerPlugin {
+            id = 'com.spindrift.run-assembler'
+            displayName = 'Spindrift Oracle Commerce RunAssembler Plugin'
+            tags = ['atg','spindrift','oracle','commerce','runassembler']
+        }
+    }
 }
 
 project.logger.quiet "Plugin ${project.name} version: ${project.version}"

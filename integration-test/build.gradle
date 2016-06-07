@@ -1,9 +1,16 @@
 buildscript {
     repositories {
-        mavenLocal()
+        //mavenLocal()
+        //jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
-        classpath 'com.spindrift.gradle:run-assembler:1.0.0-SNAPSHOT'
+        //from local maven
+        //classpath 'com.spindrift.gradle:run-assembler:1.0.1-SNAPSHOT'
+        //from gradle plugin portal
+        classpath 'gradle.plugin.com.spindrift.gradle:run-assembler:1.0.1'
     }
 }
 
