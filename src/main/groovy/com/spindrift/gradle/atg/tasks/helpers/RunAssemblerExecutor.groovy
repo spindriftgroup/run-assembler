@@ -26,7 +26,7 @@ class RunAssemblerExecutor {
 
     static final RUN_ASSEMBLER_NIX='runAssembler'
     static final RUN_ASSEMBLER_WINDOWS='runAssembler.bat'
-    static final ATG_HOME_VAR='ATG_HOME'
+    static final ATG_HOME_VAR='ATG_HOME2'
 
     static void exec(Project project, ArrayList<String> arguments) {
 
