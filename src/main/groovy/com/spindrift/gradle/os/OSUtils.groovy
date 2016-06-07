@@ -16,11 +16,14 @@
 package com.spindrift.gradle.os
 
 import org.gradle.api.GradleException
+import static org.gradle.api.logging.Logging.getLogger
 
 /**
  * Created by hallatech on 29/05/2016.
  */
 class OSUtils {
+
+    private static final String LOGGER='system.out'
 
     /**
      * Gets the Operating System type
@@ -56,8 +59,7 @@ class OSUtils {
                 throw new GradleException("Requested environment variable ${name} not found. This is requirement to continue, please set and try again.")
             }
             else {
-                //TODO - find a static logger to use
-                println "[WARN] Requested environment variable ${name} not found. Unexpected results may occur."
+                getLogger(LOGGER).warn("Requested environment variable ${name} not found. Unexpected results may occur.")
             }
         }
         return envVar
