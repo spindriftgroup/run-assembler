@@ -3,7 +3,7 @@ buildscript {
         mavenLocal()
     }
     dependencies {
-        classpath 'com.spindrift.gradle:run-assembler:0.1.0-SNAPSHOT'
+        classpath 'com.spindrift.gradle:run-assembler:1.0.0-SNAPSHOT'
     }
 }
 
