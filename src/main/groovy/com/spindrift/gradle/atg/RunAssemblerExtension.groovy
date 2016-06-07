@@ -85,5 +85,15 @@ class RunAssemblerExtension {
         this.deleteEars = deleteEars
     }
 
+    @Override
+    public String toString() {
+        """outputDir:${this.outputDir},
+buildLocal:${this.buildLocal},
+createOutputDir:${this.createOutputDir},
+atgHomeEnvVar:${this.atgHomeEnvVar},
+deleteEars:${this.deleteEars},
+assembly:${assembly}"""
+    }
+
 
 }

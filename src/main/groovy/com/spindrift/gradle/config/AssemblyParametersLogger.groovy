@@ -27,10 +27,7 @@ class AssemblyParametersLogger {
      * @return
      */
     static logPropertyValues(Project project) {
-
-        project.runAssembler.assembly.each {
-            project.logger.lifecycle "${it}"
-        }
+        project.logger.lifecycle "${project.runAssembler}"
     }
 
     static logPropertyValues(Project project, AssemblyParametersContainer assembly) {
