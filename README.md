@@ -76,6 +76,7 @@ runAssembler {
     }
 }
 ```
+
 Property | Type | Default Value | Matched runAssembler parameter
 -------- | ------------- | ------------------------------
 name* | String | none <required> | Not applicable. For requesting gradle CLI using -Papp=name
@@ -96,6 +97,7 @@ runAssembler {
     }
 }
 ```
+
 Property | Type | Default Value | Matched runAssembler parameter
 -------- | ------------- | ------------------------------
 pack | boolean | false | -pack
