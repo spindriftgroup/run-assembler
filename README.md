@@ -194,5 +194,5 @@ gradle runAssemblerProperties
 Build Notes
 ===========
 The default task is build plus a local maven install so that the integration test can immediately be executed.
-The integration tests are execute separately by switching to the integration-test directory and running the relevant 
+The integration tests are executed separately by switching to the integration-test directory and running the relevant 
 execution command as above after configuration the build.gradle with examples. 
