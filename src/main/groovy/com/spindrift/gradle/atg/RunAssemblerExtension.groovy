@@ -68,4 +68,22 @@ class RunAssemblerExtension {
     void createOutputDir(boolean createOutputDir) {
         this.createOutputDir = createOutputDir
     }
+
+    /**
+     * Set name of ATG_HOME env var
+     */
+    private String atgHomeEnvVar = 'ATG_HOME'
+    void atgHomeEnvVar(String atgHomeEnvVar) {
+        this.atgHomeEnvVar = atgHomeEnvVar
+    }
+
+    /**
+     * Delete EARs before execution
+     */
+    private boolean deleteEars = true
+    void deleteEars(boolean deleteEars) {
+        this.deleteEars = deleteEars
+    }
+
+
 }

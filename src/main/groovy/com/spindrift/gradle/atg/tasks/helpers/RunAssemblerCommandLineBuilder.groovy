@@ -20,6 +20,8 @@ import com.spindrift.gradle.config.OptionsContainer
 import com.spindrift.gradle.os.OSUtils
 import org.gradle.api.Project
 
+import java.lang.annotation.Target
+
 /**
  * Created by hallatech on 07/06/2016.
  * Builds command line arguments based on CLI usage
@@ -159,21 +161,7 @@ class RunAssemblerCommandLineBuilder {
         }
 
         //Add output file name (required)
-        def targetDir = project.runAssembler.outputDir
-
-        File targetPath = (project.runAssembler.buildLocal) ?
-                project.file("${project.buildDir}/${targetDir}") :
-                project.file(targetDir)
-        if (!targetPath.exists() && project.runAssembler.createOutputDir) {
-            targetPath.mkdirs()
-        }
-        assert targetPath.exists()
-
-        if (OSUtils.isWindows()) {
-            arguments << "${trimPath(targetPath.toString())}\\$assembly.outputFileName}"
-        } else {
-            arguments << "${trimPath(targetPath.toString())}/${assembly.outputFileName}"
-        }
+        arguments << TargetPathBuilder.getOutputDirPath(project,assemblyName)
 
         //Add layers (optional
         if (assembly.layers) {
@@ -190,15 +178,6 @@ class RunAssemblerCommandLineBuilder {
         }
 
         return arguments
-    }
-
-    private static String trimPath(String pathName) {
-        if (pathName.endsWith('/') || pathName.endsWith('\\')) {
-            pathName[0..-2]
-        }
-        else {
-            pathName
-        }
     }
 
 }

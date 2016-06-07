@@ -60,6 +60,9 @@ Property | Default Value | Description
 outputDir | atg (relative to build directory) | The target output directory for the EAR(s).
 buildLocal | true | Targets the project's build directory. If false set outputDir to absolute path.
 createOutputDir | true | Will create the target directory if it does not exist, else throws a Gradle exception.
+atgHomeEnvVar | ATG_HOME | Set the ATG HOME variable to use for finding the runAssembler utility.
+deleteEars | true | Delete any existing EARs prior to assembly.
+
 
 Assembly configuration:
 One or more assembly configurations for each EAR using:

@@ -26,11 +26,10 @@ class RunAssemblerExecutor {
 
     static final RUN_ASSEMBLER_NIX='runAssembler'
     static final RUN_ASSEMBLER_WINDOWS='runAssembler.bat'
-    static final ATG_HOME_VAR='ATG_HOME2'
 
     static void exec(Project project, ArrayList<String> arguments) {
 
-        def atgHome = OSUtils.getEnvVariable(ATG_HOME_VAR,true)
+        def atgHome = OSUtils.getEnvVariable(project.runAssembler.atgHomeEnvVar, true)
         def cliExecutable = (OSUtils.isWindows()) ?
                 "${atgHome}\\home\\bin\\${RUN_ASSEMBLER_WINDOWS}" :
                 "${atgHome}/home/bin/${RUN_ASSEMBLER_NIX}"
