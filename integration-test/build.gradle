@@ -8,9 +8,9 @@ buildscript {
     }
     dependencies {
         //from local maven
-        //classpath 'com.spindrift.gradle:run-assembler:1.0.1-SNAPSHOT'
+        //classpath 'com.spindrift.gradle:run-assembler:1.0.2-SNAPSHOT'
         //from gradle plugin portal
-        classpath 'gradle.plugin.com.spindrift.gradle:run-assembler:1.0.1'
+        classpath 'gradle.plugin.com.spindrift.gradle:run-assembler:1.0.2'
     }
 }
 

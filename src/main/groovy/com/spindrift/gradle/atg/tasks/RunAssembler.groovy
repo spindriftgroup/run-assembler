@@ -34,6 +34,7 @@ class RunAssembler extends DefaultTask {
 
     static final String TASK_DESCRIPTION = "Assembles an Oracle Commerce (ATG) EAR."
     static final String TASK_GROUP = "Oracle Commerce"
+    static final String SHOW_PROPERTIES_PARAM = "showProperties"
 
     RunAssembler() {
         description = TASK_DESCRIPTION
@@ -45,7 +46,7 @@ class RunAssembler extends DefaultTask {
 
         RunAssemblerValidator.validate(project)
 
-        if (project.hasProperty('showProperties')) {
+        if (project.hasProperty(SHOW_PROPERTIES_PARAM)) {
             AssemblyParametersLogger.logPropertyValues(project)
         }
 
@@ -80,7 +81,6 @@ class RunAssembler extends DefaultTask {
     def deleteEarDir(Project project, String app) {
         if (project.runAssembler.deleteEars) {
             File ear = project.file(TargetPathBuilder.getOutputDirPath(project, app))
-            println "ear=$ear"
             if (ear.exists()) {
                 project.logger.info "Deleting existing EAR ${ear}"
                 project.delete ear
